@@ -1,4 +1,4 @@
-![Overview](.\resources\Overview.jpg)
+![Overview](./resources/Overview.jpg)
 
 ## The setup
 
@@ -64,10 +64,10 @@ Programmeer de PLC en de DALI schakelaar de DALI dimmer kunnen besturen. Voor DA
 
 Programmatie (minimaal vereist om 60% te behalen)
 
-1. Maak gebruik van de ‘FB_KL6811Communication ’ functieblok voor de communicatie met de KL6811. Koppel de juiste variabelen met de KL6811. Laat de status van deze functieblok zien in de visualisatie. (10%)
+1. Maak gebruik van de ‘FB_KL6811Communication ’ functieblok voor de communicatie met de KL6811. Koppel de juiste variabelen met de KL6811. Laat de status van deze functieblok zien in de visualisatie voor snelle foutopsporing. (10%)
 2. Lees de DALI sensor uit met de FB_DALIV2SmartSPOT en toon alle waarden in de visualisatie. (15%)
-3. Stuur de DALI dimmer aan met de FB_DALIV2Dimmer2Switch. Gebruik daarvoor alle input en visualiseer alle in- en uitgangen van deze FB. (15%)
-4. Plaats de DALI shakelaar in "Mode D: GC-A" om de DALI dimmer aan te sturen. (20%)
+3. Stuur de DALI dimmer aan met de FB_DALIV2Dimmer2Switch vanuit de visualisatie. De zes eerste inputs van de FB dienen bedienbaar te zijn. (15%)
+4. Plaats de DALI schakelaar in "Mode D: GC-A" om de DALI dimmer aan te sturen. (20%)
 
 Bijkomende programmatie (Percentage telt enkel indien minimale programmatie bereikt is).
 
