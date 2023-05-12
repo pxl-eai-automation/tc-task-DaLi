@@ -71,8 +71,8 @@ Programmatie (minimaal vereist om 60% te behalen)
 
 Bijkomende programmatie (Percentage telt enkel indien minimale programmatie bereikt is).
 
-1. Gebruik FB_DailyScheduler om de dimmer vanaf een bepaald uur naar een scene te gaan. (20%)
-2. Schrijf alle mogelijke data waarden van de DALI sensor weg naar een CSV file. Geef via de visu aan wat de sample rate is en hoeveel samples er uitgelezen worden. (20%)
+5. Gebruik FB_DailyScheduler om de dimmer vanaf een bepaald uur naar een scene te gaan. (20%)
+6. Schrijf alle nuttige data waarden van de DALI sensoren weg naar een CSV file. Deze moeten tegen een - via de visualisatie - instelbare sample rate toegevoegd worden aan de CSV en getoond worden in de visualisatie. (20%)
 
 ## Questions
 
