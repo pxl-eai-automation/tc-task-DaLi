@@ -38,7 +38,7 @@ The data link layer also includes mechanisms for addressing and controlling indi
   - Mounting and wiring => LED indicators
   - Configuration software KS2000
   - Appendix => DALI commands
-- Lees volgende pagina’s over de DALI bibliotheek [Tc3_DALI](https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc3_dali/index.html&id=3390268514115562610)
+- Lees volgende pagina’s over de DALI bibliotheek [Tc2_DALI](https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_dali/index.html&id=)
   - Introduction
   - DALI
   - Programming => POU's => Low-Level commands => Base => FB_KL6811Communication and FB_DALIV2xSendDALICommand
