@@ -17,9 +17,9 @@ The data link layer also includes mechanisms for addressing and controlling indi
 ## Hardware
 
 - DALI devices
-  - Integratech SR-2303B, universele DALI dimmer
-  - TRIDONIC DALI XC input controller
-  - TRIDONIC DALI MSensor 02
+  - Integratech SR-2303DIN, universele DALI dimmer
+  - TRIDONIC DALI-XC, input controller (art. no. 28001716)
+  - TRIDONIC DALI MSensor 02 5DPI 41w (art. no. 28000896)
   - TRIDONIC DALI USB 24138923
 
 - PLC terminal: 
