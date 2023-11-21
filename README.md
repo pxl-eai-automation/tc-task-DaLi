@@ -60,7 +60,7 @@ The data link layer also includes mechanisms for addressing and controlling indi
 
 ## Exercises
 
-Programmeer de PLC en de DALI schakelaar de DALI dimmer kunnen besturen. Voor DALI te programmeren dien je de bibliotheek Tc3_DALI toe te voegen bij je References.
+Programmeer de PLC en de DALI schakelaar de DALI dimmer kunnen besturen. Voor DALI te programmeren dien je de bibliotheek Tc2_DALI toe te voegen bij je References.
 
 Programmatie (minimaal vereist om 60% te behalen)
 
