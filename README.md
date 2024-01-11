@@ -67,12 +67,12 @@ Programmatie (minimaal vereist om 60% te behalen)
 1. Maak gebruik van de ‘FB_KL6811Communication ’ functieblok voor de communicatie met de KL6811. Koppel de juiste variabelen met de KL6811. Laat de status van deze functieblok zien in de visualisatie voor snelle foutopsporing. (10%)
 2. Lees de DALI sensor uit met de FB_DALIV2SmartSPOT en toon alle waarden in de visualisatie. (15%)
 3. Stuur de DALI dimmer aan met de FB_DALIV2Dimmer2Switch vanuit de visualisatie. De zes eerste inputs van de FB dienen bedienbaar te zijn. (15%)
-4. Plaats de DALI schakelaar in "Mode D: GC-A" om de DALI dimmer aan te sturen. (20%)
+4. Stuur de ledstrip contstant bij om een bepaalde brightness te bereiken, die instelbaar in via de visualisatie. Zoek uit welke FB dit mogelijk maakt en implementeer dit. (20%)
 
 Bijkomende programmatie (Percentage telt enkel indien minimale programmatie bereikt is).
 
-5. Gebruik FB_DailyScheduler om de dimmer op instelbare tijdstippen meerdere LED-strips binnen een groep aan te sturen. De in- en uitschakeltijden moeten instelbaar zijn via de visualisatie. (20%)
-6. Schrijf alle nuttige data waarden van de DALI toestellen weg naar een CSV file. In de visualisatie moet de sample rate instelbaar zijn en de nuttige data waarden die weggeschreven zijn eveneens getoond worden. Alle nuttige data waarden omvatten de lichtintensiteit per LED-strip, alsook aanwezigheidswaarde en lichtintensiteit die gemeten zijn door de bewegingssensor. (20%)
+5. Gebruik FB_DailyScheduler om de dimmer op instelbare tijdstippen meerdere LED-strips binnen een groep aan- en ui te schakelen. De in- en uitschakeltijden moeten instelbaar zijn via de visualisatie. (20%)
+6. Schrijf naar een csv-file de lichtintensiteit per LED-strip, alsook de aanwezigheidswaarde en lichtintensiteit die gemeten zijn door de bewegingssensor weg. De CSV file moet een header bevatten en een timestamp per ingave. De sample rate waarop dit gebeurt moet instelbaar zijn via de visualisatie, alsook de naam van de csv-file. (20%)
 
 ## Questions
 
