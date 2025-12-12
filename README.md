@@ -27,7 +27,7 @@ The data link layer also includes mechanisms for addressing and controlling indi
 
 ## Preperations
 
-- Lees de [documentatie van de dimmer](https://www.integratech.be/integratech-catalog/controller-dali-naar-pwm-rgbw-4x5a-din-rail/).
+- Lees de [documentatie van de dimmer](https://integratech.be/nl/producten/voedingen-en-sturingen/led-strip-sturing-dali/controller-dali-naar-pwm-monocctrgb-w-4x5a-din).
 - Lees de [documentatie van de MSensor](https://www.tridonic.com/en/int/product/17380?tab=0).
 - Lees de [documentatie van de schakelaars](https://www.tridonic.com/en/int/product/17786?tab=0).
 - Lees de documentatie van de DALI configuratie [tool](https://www.tridonic.com/en/int/product/24138923?tab=0) en download [de software](https://www.tridonic.com/en/int/services/software/masterconfigurator)
