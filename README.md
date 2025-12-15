@@ -23,7 +23,7 @@ The data link layer also includes mechanisms for addressing and controlling indi
   - TRIDONIC DALI USB 24138923
 
 - PLC terminal: 
-  - KL6811 DMX master terminal
+  - KL6811 DALI master terminal
 
 ## Preperations
 
@@ -31,18 +31,19 @@ The data link layer also includes mechanisms for addressing and controlling indi
 - Lees de [documentatie van de MSensor](https://www.tridonic.com/en/int/product/17380?tab=0).
 - Lees de [documentatie van de schakelaars](https://www.tridonic.com/en/int/product/17786?tab=0).
 - Lees de documentatie van de DALI configuratie [tool](https://www.tridonic.com/en/int/product/24138923?tab=0) en download [de software](https://www.tridonic.com/en/int/services/software/masterconfigurator)
-- Raadpleeg de handleiding van de Beckhoff [KL6811 communication interface](https://download.beckhoff.com/download/Document/io/bus-terminals/kl6811en.pdf). Lees zeker de pagina’s:
+- Raadpleeg de handleiding van de Beckhoff [KL6811 communication interface](https://download.beckhoff.com/download/Document/io/bus-terminals/kl6811en.pdf). Lees zeker de pagina's:
   - Product overview => Introduction
   - Product overview => Technical data
   - Product overview => Basic function principles
   - Mounting and wiring => LED indicators
   - Configuration software KS2000
   - Appendix => DALI commands
-- Lees volgende pagina’s over de DALI bibliotheek [Tc2_DALI](https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_dali/index.html&id=)
+- Lees volgende pagina's over de DALI bibliotheek [Tc2_DALI](https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_dali/index.html&id=)
   - Introduction
   - DALI
   - Programming => POU's => Low-Level commands => Base => FB_KL6811Communication and FB_DALIV2xSendDALICommand
   - Programming => POU's => High-Level commands => Part 102 => Power control => FB_DALIV2Dimmer2Switch
+  - Programming => POU's => High-Level commands => Part 102 => Light control
   - Programming => POU's => Third-party function blocks => Tridonic => FB_DALIV2SmartSPOT
   - Programming => DUTs => Structures => ST_KL6811InData, ST_KL6811OutData en ST_DALIV2CommandBuffer
 
@@ -50,29 +51,134 @@ The data link layer also includes mechanisms for addressing and controlling indi
 
 1.  Leg in je eigen woorden DALI uit. Hoe is het opgebouwd en wat kan je ermee?
 2.  Beschrijf de aansluitingen van de KL6811.
-3.  Beschrijf de ‘FB_KL6811Communication’ functieblok. Welke zijn de in- en uitgangen en waarvoor wordt deze gebruikt?
-4.  Beschrijf de ‘ST_KL6811InData’ structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
-5.  Beschrijf de ‘ST_KL6811OutData’ structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
-6.  Beschrijf de ‘ST_DALIV2CommandBuffer’ structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
+3.  Beschrijf de 'FB_KL6811Communication' functieblok. Welke zijn de in- en uitgangen en waarvoor wordt deze gebruikt?
+4.  Beschrijf de 'ST_KL6811InData' structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
+5.  Beschrijf de 'ST_KL6811OutData' structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
+6.  Beschrijf de 'ST_DALIV2CommandBuffer' structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
 7.  Beschrijf de aansluitingen en de werking van de Integratech universele DALI dimmer
 8.  Beschrijf de aansluitingen en de werking van de TRIDONIC dali XC input controller en doel van de TRIDONIC DALI USB
 9.  Beschrijf de aansluitingen en de werking van de TRIDONIC DALI MSensor 02
 
 ## Exercises
 
-Programmeer de PLC en de DALI schakelaar de DALI dimmer kunnen besturen. Voor DALI te programmeren dien je de bibliotheek Tc2_DALI toe te voegen bij je References.
+Programmeer de PLC zodat de DALI schakelaar en dimmer volledig te besturen zijn. Voor DALI te programmeren dien je de bibliotheek Tc2_DALI toe te voegen bij je References.
 
-Programmatie (minimaal vereist om 60% te behalen)
+### Programmatie (minimaal vereist om 60% te behalen)
 
-1. Maak gebruik van de ‘FB_KL6811Communication ’ functieblok voor de communicatie met de KL6811. Koppel de juiste variabelen met de KL6811. Laat de status van deze functieblok zien in de visualisatie voor snelle foutopsporing. (10%)
-2. Lees de DALI sensor uit met de FB_DALIV2SmartSPOT en toon alle waarden in de visualisatie. (15%)
-3. Stuur de DALI dimmer aan met de FB_DALIV2Dimmer2Switch vanuit de visualisatie. De zes eerste inputs van de FB dienen bedienbaar te zijn. (15%)
-4. Stuur de ledstrip contstant bij om een bepaalde brightness te bereiken, die instelbaar in via de visualisatie. Zoek uit welke FB dit mogelijk maakt en implementeer dit. (20%)
+#### 1. Communicatie en device scanning (8%)
 
-Bijkomende programmatie (Percentage telt enkel indien minimale programmatie bereikt is).
+Maak gebruik van de 'FB_KL6811Communication' functieblok voor de communicatie met de KL6811. Koppel de juiste variabelen met de KL6811. **Voer een DALI scan uit** om alle devices te detecteren en toon hun adressen en types in de visualisatie. Ga na het vinden van twee devices automatisch over naar het uitlezen (zie volgende opdrachten) maar laat de status van de scan FB zien in de visualisatie voor snelle foutopsporing.
 
-5. Gebruik FB_DailyScheduler om de dimmer op instelbare tijdstippen meerdere LED-strips binnen een groep aan- en ui te schakelen. De in- en uitschakeltijden moeten instelbaar zijn via de visualisatie. (20%)
-6. Schrijf naar een csv-file de lichtintensiteit per LED-strip, alsook de aanwezigheidswaarde en lichtintensiteit die gemeten zijn door de bewegingssensor weg. De CSV file moet een header bevatten en een timestamp per ingave. De sample rate waarop dit gebeurt moet instelbaar zijn via de visualisatie, alsook de naam van de csv-file. (20%)
+#### 2. Sensor uitlezen (12%)
+
+Lees de DALI sensor uit met de FB_DALIV2SmartSPOT en toon alle beschikbare waarden in de visualisatie:
+- Lichtintensiteit (lux)
+- Aanwezigheidsstatus (bewegingsdetectie)
+
+#### 3. Dimmer aansturen met uitgebreide bediening (15%)
+
+Stuur de DALI dimmer aan met de FB_DALIV2Dimmer2Switch vanuit de visualisatie. Implementeer de volgende bediening:
+- ON/OFF toggle functie
+- Dimwaarde instelbaar via slider (0-100%)
+- Fade time instelbaar (0-10 seconden) - hoe snel het licht moet in/uitfaden
+- Minimum level instelbaar (laagste dim-waarde die gebruikt mag worden)
+- Maximum level instelbaar (hoogste dim-waarde die gebruikt mag worden)
+- Fade rate instelbaar (snelheid van dim-veranderingen)
+
+**Let op:** Dit zijn zes verschillende parameters die je moet kunnen instellen en naar de dimmer moet kunnen sturen.
+
+#### 4. Automatische lichtregeling (15%)
+
+Implementeer een gesloten regelkring voor automatische lichtregeling:
+- Meet de huidige lichtintensiteit van de MSensor
+- Vergelijk met een target lichtintensiteit (instelbaar via visualisatie, bv. 500 lux)
+- Stuur de dimmer bij om de target te bereiken
+- Gebruik een eenvoudige regelaar (bv. proportioneel) om overshoot en oscillatie te vermijden
+- Toon in de visualisatie:
+  - Gemeten lichtintensiteit
+  - Target lichtintensiteit
+  - Huidige dimmer output (%)
+  - Regelfout (verschil tussen target en gemeten waarde)
+- Schakelbaar ON/OFF via visualisatie
+
+> [!tip]
+>
+> Zoek in de Tc2_DALI library naar FB's die te maken hebben met "Light Control" of "Constant Light". Let op dat je een zachte regelactie implementeert, niet een aan/uit schakelaar.
+
+#### 5. Aanwezigheidsdetectie met timer (10%)
+
+Implementeer intelligente aanwezigheidsdetectie:
+- Bij detectie van aanwezigheid: licht naar instelbaar niveau (bv. 80%)
+- Bij geen aanwezigheid gedurende X seconden (instelbaar via visualisatie): 
+  - Licht dimmen naar laag niveau (bv. 20%) OF volledig uitschakelen
+  - Keuze tussen dimmen of uitschakelen via visualisatie
+- Toon in visualisatie:
+  - Aanwezigheidsstatus (Aanwezig / Niet aanwezig)
+  - Countdown timer (hoeveel seconden nog tot actie)
+  - Huidige modus (Actief / Dimmed / Uit)
+
+**Let op:** De timer moet resetten zodra opnieuw beweging gedetecteerd wordt.
+
+---
+
+### Bijkomende programmatie (Percentage telt enkel indien minimale programmatie bereikt is)
+
+#### 6. Uitgebreide CSV logging met energie-analyse (20%)
+
+Schrijf een geavanceerd logging systeem naar CSV file:
+
+**Te loggen data:**
+- Timestamp in formaat `YYYY-MM-DD HH:MM:SS`
+- Gemeten lichtintensiteit (lux)
+- Dimmer output waarde (%)
+- Aanwezigheidsstatus (0 of 1)
+- Energie-besparing statistiek: bereken het verschil tussen "altijd aan op 100%" en het daadwerkelijke verbruik
+
+**Functionaliteit:**
+- Sample rate instelbaar via visualisatie (1s - 60s)
+- Bestandsnaam instelbaar via visualisatie
+- Start/Stop functie via druktoets
+- Toon aantal geschreven regels in visualisatie
+
+**Energie-besparing berekening:**
+Als de dimmer op 50% staat, verbruikt hij minder energie dan op 100%. Bereken voor elke log-regel:
+- Theoretisch verbruik als dimmer altijd 100% zou zijn: `tijd × 100%`
+- Werkelijk verbruik: `tijd × huidige_dim_waarde%`
+- Besparing: `theoretisch - werkelijk`
+- Toon cumulatieve besparing in visualisatie
+
+**Let op:** Dit is een complexe opdracht die goed begrip vereist van file I/O, timestamps, en real-time berekeningen.
+
+#### 7. Geavanceerd scene-systeem met automatisering (20%)
+
+Implementeer een professioneel scene-beheer systeem:
+
+**Scene definitie (minimaal 4 scenes):**
+- Scene 1: "Dag" (100% brightness, fade time 2s)
+- Scene 2: "Avond" (60% brightness, fade time 5s)
+- Scene 3: "Film" (20% brightness, fade time 10s)
+- Scene 4: "Weg" (0% brightness, fade time 1s)
+
+**Functionaliteit:**
+- Elke scene heeft:
+  - Eigen dim-waarde (instelbaar)
+  - Eigen fade time (instelbaar)
+  - Eigen naam
+- Scenes opslaan en terugroepen via knoppen in visualisatie
+- Automatische scene-wisseling op basis van tijdschema:
+  - Minimaal 2 instelbare tijden (bv. 08:00 → Scene "Dag", 20:00 → Scene "Avond")
+  - Tijden instelbaar via visualisatie
+- Handmatige override:
+  - Als gebruiker handmatig een scene selecteert, wordt automatische wisseling tijdelijk uitgeschakeld
+  - Via druktoets kan automatische modus weer geactiveerd worden
+- Toon in visualisatie:
+  - Huidige actieve scene (naam + parameters)
+  - Status: "Automatisch" of "Handmatig"
+  - Volgende geplande scene-wissel + tijd
+
+**Tip:** Gebruik de system tijd van de PLC om de automatische scene-wisseling te triggeren. Denk aan edge-detection om scenes maar één keer te activeren.
+
+---
 
 ## Questions
 
