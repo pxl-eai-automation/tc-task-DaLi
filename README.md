@@ -56,12 +56,13 @@ The data link layer also includes mechanisms for addressing and controlling indi
 5.  Beschrijf de 'ST_KL6811OutData' structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
 6.  Beschrijf de 'ST_DALIV2CommandBuffer' structure. Wat is de inhoud en waarvoor wordt deze gebruikt?
 7.  Beschrijf de aansluitingen en de werking van de Integratech universele DALI dimmer
-8.  Beschrijf de aansluitingen en de werking van de TRIDONIC dali XC input controller en doel van de TRIDONIC DALI USB
+8.  Beschrijf de aansluitingen en de werking van de TRIDONIC dali XC input controller en het doel van de TRIDONIC DALI USB
 9.  Beschrijf de aansluitingen en de werking van de TRIDONIC DALI MSensor 02
 
 ## Exercises
 
 Programmeer de PLC zodat de DALI schakelaar en dimmer volledig te besturen zijn. Voor DALI te programmeren dien je de bibliotheek Tc2_DALI toe te voegen bij je References.
+
 
 ### Programmatie (minimaal vereist om 60% te behalen)
 
@@ -101,8 +102,7 @@ Implementeer een gesloten regelkring voor automatische lichtregeling:
   - Regelfout (verschil tussen target en gemeten waarde)
 - Schakelbaar ON/OFF via visualisatie
 
-> [!tip]
->
+> [!TIP]
 > Zoek in de Tc2_DALI library naar FB's die te maken hebben met "Light Control" of "Constant Light". Let op dat je een zachte regelactie implementeert, niet een aan/uit schakelaar.
 
 #### 5. Aanwezigheidsdetectie met timer (10%)
@@ -177,6 +177,26 @@ Implementeer een professioneel scene-beheer systeem:
   - Volgende geplande scene-wissel + tijd
 
 **Tip:** Gebruik de system tijd van de PLC om de automatische scene-wisseling te triggeren. Denk aan edge-detection om scenes maar één keer te activeren.
+
+---
+
+## Troubleshooting met masterCONFIGURATOR
+
+Als je DALI communicatie problemen hebt met de PLC, kun je de TRIDONIC DALI USB gebruiken voor diagnostiek:
+
+1. **Disconnect de KL6811** van de DALI bus (belangrijk! Twee masters op één bus geeft conflicten)
+2. Sluit de DALI USB aan op je PC en DALI bus
+3. Open masterCONFIGURATOR en scan voor devices
+4. Verifieer:
+   - Worden alle devices gevonden?
+   - Zijn de adressen correct?
+   - Reageren devices op Quick Test commando's?
+5. Als alles werkt in masterCONFIGURATOR maar niet via de PLC:
+   - Check je TwinCAT code
+   - Verifieer de I/O mappings
+   - Check de FB_KL6811Communication parameters
+
+**Let op:** MasterCONFIGURATOR en de PLC kunnen NIET tegelijkertijd op de DALI bus! DALI ondersteunt geen multi-master zonder arbitratie.
 
 ---
 
